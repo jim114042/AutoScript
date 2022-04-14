@@ -2,9 +2,12 @@
 
 ## 说明 :
 * 搬运和同步更新David佬脚本，不负责维护脚本.
-* 电报群：https://t.me/china20211029
-* BoxJs订阅地址(主力)：http://script.frp.aiuyo.com:8680/David.boxjs.json
-* BoxJs订阅地址(备用)：http://script.frp.zhoudedi.top:60080/David.boxjs.json
+### 电报群：
+    https://t.me/china20211029
+### BoxJs订阅地址(主力)：
+    http://script.frp.aiuyo.com:8680/David.boxjs.json
+### BoxJs订阅地址(备用)：
+    http://script.frp.zhoudedi.top:60080/David.boxjs.json
 * David-github-gallery为作者Github最后一版。推荐使用aiuyo
 ## task订阅地址
     ### 国内主力(⭐️⭐️⭐️⭐️⭐️)
