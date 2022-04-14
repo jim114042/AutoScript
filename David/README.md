@@ -9,10 +9,10 @@
 ## task订阅地址
     ### 国内主力(⭐️⭐️⭐️⭐️⭐️)
     https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-aiuyo_Scripts-gallery.json
-    ### 国内备用(⭐️⭐️⭐️⭐️)
-    https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-zhoudedi_Scripts-gallery.json
-    ### Github自用(⭐️)
-    https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-Github_Scripts-gallery.json
+### 国内备用(⭐️⭐️⭐️⭐️)
+https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-zhoudedi_Scripts-gallery.json
+### Github自用(⭐️)
+https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-Github_Scripts-gallery.json
 
 
 ### 特别声明：
