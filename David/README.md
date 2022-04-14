@@ -10,13 +10,11 @@
     http://script.frp.zhoudedi.top:60080/David.boxjs.json
 * David-github-gallery为作者Github最后一版。推荐使用aiuyo
 ## task订阅地址
-    ### 国内主力(⭐️⭐️⭐️⭐️⭐️)
+### 国内主力(⭐️⭐️⭐️⭐️⭐️)
     https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-aiuyo_Scripts-gallery.json
-## task订阅地址
-    ### 国内备用(⭐️⭐️⭐️⭐️)
+### 国内备用(⭐️⭐️⭐️⭐️)
     https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-zhoudedi_Scripts-gallery.json
-## task订阅地址
-    ### Github自用(⭐️)
+### Github自用(⭐️)
     https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-Github_Scripts-gallery.json
 
 
