@@ -6,7 +6,9 @@
 * BoxJs订阅地址(主力)：http://script.frp.aiuyo.com:8680/David.boxjs.json
 * BoxJs订阅地址(备用)：http://script.frp.zhoudedi.top:60080/David.boxjs.json
 * David-github-gallery为作者Github最后一版。推荐使用aiuyo
-https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-aiuyo_Scripts-gallery.json
+# 推荐订阅地址
+    # 国内主力
+    https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/David-aiuyo_Scripts-gallery.json
 
 
 ### 特别声明：
