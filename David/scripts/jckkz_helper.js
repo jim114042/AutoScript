@@ -1,6 +1,6 @@
 /*
 TG电报群: 群已私有，入群私聊机器人 @DavidLoveBot
-boxjs: https://raw.githubusercontent.com/Se7eNcBoT/QuantumultX/master/David/scripts/David.boxjs.json
+boxjs: https://cdn.jsdelivr.net/gh/bluesmallpig/scripts/David.boxjs.json
 功能：只需设置一个看看赚body，自动为你生成全部body，你将不用为过一段时间就要重新抓取body而烦恼。
 */
 //每个晶彩看点账号设置一个看看赚body

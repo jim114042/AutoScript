@@ -1,6 +1,6 @@
 /*
 TG电报群: 群已私有，入群私聊机器人 @DavidLoveBot
-boxjs: https://raw.githubusercontent.com/Se7eNcBoT/QuantumultX/master/David/scripts/David.boxjs.json
+boxjs: https://cdn.jsdelivr.net/gh/bluesmallpig/scripts/David.boxjs.json
 */
 const $ = new Env('晶彩看点');
 //分享文章地址
