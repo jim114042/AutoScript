@@ -1,0 +1,1477 @@
+{
+    "id": "David.app.sub",
+    "name": "David脚本订阅(国内)",
+    "author": "@David",
+    "icon": "http://script.frp.aiuyo.com:8680/dog.jpeg",
+    "apps": [
+	        {
+            "id":"fqctapp",
+            "name":"番茄畅听",
+            "keys":[
+                "fqctapp"
+            ],
+            "settings": [{
+                "id": "fqctuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "fqctactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/fqct-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/fqct.png"
+            ],
+            "script":"https://github.com/"
+        },
+		{
+            "id":"sqxsapp",
+            "name":"书旗小说",
+            "keys":[
+                "sqxsapp"	
+            ],
+            "settings": [{
+                "id": "sqxsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "sqxsactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+	    ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/shuqi-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/shuqi.png"
+            ],
+            "script":"https://github.com/"
+        },
+	    {
+            "id":"dyjsbapp",
+            "name":"抖音极速版app",
+            "keys":[
+                "dyjsbapp"
+            ],
+            "settings": [{
+                "id": "dyjsbkey",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "dyjsbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+	    ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/dyjsb-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/dyjsb.png"
+            ],
+            "script":"https://github.com/"
+        },
+	    {
+            "id":"qhbdspapp",
+            "name":"趣红包短视频",
+            "keys":[
+                "qhbdspapp"	
+            ],
+            "settings": [{
+                "id": "qhbdspuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/qhbapp-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/qhbapp.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"dawapp",
+            "name":"都爱玩",
+            "keys":[
+                "dawapp"	
+            ],
+            "settings": [{
+                "id": "dawuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/daw-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/daw.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"lsapp",
+            "name":"来闪",
+            "keys":[
+                "lsapp"	
+            ],
+            "settings": [
+            {
+                "id": "lsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+            {
+                "id": "ls_invitation_status",
+                "name": "是否填写作者邀请码",
+                "val": "1",
+                "type": "number",
+                "desc": "0:不填 1:填写 默认填写"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ls-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/ls.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"dzlapp",
+            "name":"多走路",
+            "keys":[
+                "dzlapp"	
+            ],
+            "settings": [
+	    {
+                "id": "dzluserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "dzlactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+	    ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/dzl-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/dzl.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"ydyyapp",
+            "name":"移动影院",
+            "keys":[
+                "ydyyapp"	
+            ],
+            "settings": [{
+                "id": "ydyyuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ydyy-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/ydyy.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"tcapp",
+            "name":"图虫",
+            "keys":[
+                "tcapp"	
+            ],
+            "settings": [{
+                "id": "tcuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/tc-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/tc.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"dszbapp",
+            "name":"电视直播",
+            "keys":[
+                "dszbapp"	
+            ],
+            "settings": [{
+                "id": "dszbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/dszb-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/dszb.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"xmydapp",
+            "name":"小米运动",
+            "keys":[
+                "xmydapp"	
+            ],
+            "settings": [{
+                "id": "xmyduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/xmyd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/xmyd.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"cydxsgame",
+            "name":"成语大学士",
+            "keys":[
+                "cydxsgame"	
+            ],
+            "settings": [{
+                "id": "cydxsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/cydxs-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/cydxs.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"dtwzgame",
+            "name":"答题王者",
+            "keys":[
+                "dtwzgame"	
+            ],
+            "settings": [{
+                "id": "dtwzuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            }],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/wzdt-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/wzdt.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"dsjapp",
+            "name":"电视家",
+            "keys":[
+                "dsjapp"	
+            ],
+            "settings": [{
+                "id": "dsjuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "dsjactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "txamount",
+                "name": "提现金额",
+                "val": "1,2",
+                "type": "text",
+                "desc": "自己设定金额，用英文的逗号隔开"
+            }
+	    ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/dsj-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/dsj.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"kkzapp",
+            "name":"看看赚",
+            "keys":[
+                "zqkdkkz_body","jckdkkz_body"	
+            ],
+            "settings": [
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "zqkdactivecode",
+                "name": "中青授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "jckdactivecode",
+                "name": "晶彩授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            },{
+                "id": "zqkdkkz_body",
+                "name": "中青看看赚Body",
+                "val": "",
+                "type": "text",
+                "desc": "一个账号一个Body,多个账号&符号隔开"
+            },{
+                "id": "jckdkkz_body",
+                "name": "晶彩看看赚Body",
+                "val": "",
+                "type": "text",
+                "desc": "一个账号一个Body,多个账号&符号隔开"
+            }
+	    ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/zq_jc_mini.png",
+                "http://script.frp.aiuyo.com:8680/img/zq_jc.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"gylmapp",
+            "name":"高佣联盟",
+            "keys":[
+                "gylmapp"
+            ],
+            "settings": [{
+                "id": "gylmuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "gylmactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/gylm-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/gylm.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"fqxsapp",
+            "name":"番茄小说",
+            "keys":[
+                "fqxsapp"
+            ],
+            "settings": [{
+                "id": "fqxsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "fqxsactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/fqxs-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/fqxs.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"hlhbapp",
+            "name":"欢乐红包",
+            "keys":[
+                "hlhbapp"
+            ],
+            "settings": [{
+                "id": "hlhbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "hlhbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/hlhb-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/hlhb.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"djxsapp",
+            "name":"得间小说",
+            "keys":[
+                "djxsapp"
+            ],
+            "settings": [{
+                "id": "djxsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "djxsactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/djxs-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/djxs.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"fdxsapp",
+            "name":"疯读小说",
+            "keys":[
+                "fdxsapp"
+            ],
+            "settings": [{
+                "id": "fdxsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "fdxsactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/fdxs-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/fdxs.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"qqydapp",
+            "name":"QQ阅读",
+            "keys":[
+                "qqydapp"
+            ],
+            "settings": [{
+                "id": "qqyduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "qqydactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/qqyd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/qqyd.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"awyapp",
+            "name":"爱微影",
+            "keys":[
+                "awyapp"
+            ],
+            "settings": [{
+                "id": "awyuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "awyactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "awytxamount ",
+                "name": "提现金额",
+                "val": "0.5",
+                "type": "number",
+                "desc": "设置钱包达到多少金额提现"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/awy-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/awy.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"xgspapp",
+            "name":"西瓜视频",
+            "keys":[
+                "xgspapp"
+            ],
+            "settings": [{
+                "id": "xgspuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "xgspactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/xgsp.png",
+                "http://script.frp.aiuyo.com:8680/img/xgsp-mini.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"slapp",
+            "name":"闪辆",
+            "keys":[
+                "slapp"
+            ],
+            "settings": [{
+                "id": "sluserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "slactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/sl-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/sl.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"zqkdapp",
+            "name":"中青看点IOS",
+            "keys":[
+                "zqkdapp"
+            ],
+            "settings": [{
+                "id": "zqkduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "zqkdactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "apiHost",
+                "name": "APIHOST",
+                "val": "",
+                "type": "text",
+                "desc": "根据提示输入"
+            },
+	    {
+                "id": "zqkdtxamount",
+                "name": "提现金额",
+                "val": "3",
+                "type": "number",
+                "desc": "0:3毛;1:1元;2:10元;3:30元"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/zqkd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/zqkd.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"sjbapp",
+            "name":"睡觉宝",
+            "keys":[
+                "sjbapp"
+            ],
+            "settings": [{
+                "id": "sjbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	    {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "sjbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/sjb-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/sjb.png"
+            ],
+            "script":"https://github.com/"
+        },
+	{
+            "id":"synckey",
+            "name":"同步cookies到v2p",
+            "keys": ["v2purl", "v2token"],
+            "settings": [{
+        	"id": "v2pcookieupdate",
+        	"name": "同步开关",
+        	"val": false,
+        	"type": "boolean",
+        	"desc": "打开才会上传cookie,用来刚开始使用的时候。"
+      	     }, {
+        	"id": "v2purl",
+       	 	"name": "主页地址",
+        	"val": "",
+        	"type": "text",
+       	 	"desc": "请到设置查询,例子:http://192.168.1.102:12521"
+      	     },
+      	     {
+        	"id": "v2token",
+       	 	"name": "WEBHOOK TOKEN",
+        	"val": "",
+        	"type": "text",
+        	"desc": "请到设置查询,例子:a8c259b2-67fe-D-7bfdf1f55cb3"
+      	     }],
+            "author":"@Cenbomin",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/sync-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/sync.png"
+            ],
+            "script":"https://raw.githubusercontent.com/bluesmallpig/scripts/main/sync_key.js"
+        },
+        {
+            "id":"zssqapp",
+            "name":"追书神器",
+            "keys":[
+                "zssqapp"
+            ],
+            "settings": [{
+                "id": "zssquserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "zssqactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/zssq-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/zssq.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"smapp",
+            "name":"石猫",
+            "keys":[
+                "smapp"
+            ],
+            "settings": [{
+                "id": "smuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "smactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/sm-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/sm.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"txsapp",
+            "name":"淘小说",
+            "keys":[
+                "txsapp"
+            ],
+            "settings": [{
+                "id": "txsuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "txsactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/txs-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/txs.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"wlkdapp",
+            "name":"文旅看点",
+            "keys":[
+                "wlkdapp"
+            ],
+            "settings": [{
+                "id": "wlkduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "1",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "wlkdactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/wlkd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/wlkd.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"kkdapp",
+            "name":"快看点",
+            "keys":[
+                "kkdapp"
+            ],
+            "settings": [{
+                "id": "kkduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "kkdactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/kkd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/kkd.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"jrttapp",
+            "name":"今日头条极速版",
+            "keys":[
+                "jrttapp"
+            ],
+            "settings": [{
+                "id": "jrttuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "jrttactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/jrtt-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/jrtt.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"syncql",
+            "name":"同步青龙",
+            "keys":[
+                "ql_host",
+                "ql_app_id",
+                "ql_secret_key",
+                "sync_ql_key",
+                "sync_ql_remark"
+            ],
+            "settings": [
+            {
+                "id": "ql_host",
+                "name": "青龙访问地址",
+                "val": "http://127.0.0.1:5700",
+                "type": "text",
+                "desc": "填写青龙的访问地址"
+            },
+            {
+                "id": "ql_app_id",
+                "name": "青龙授权id",
+                "val": "",
+                "type": "text",
+                "desc": "填写青龙的第三方授权id"
+            },
+            {
+                "id": "ql_secret_key",
+                "name": "青龙授权秘钥",
+                "val": "",
+                "type": "text",
+                "desc": "填写青龙的第三方授权秘钥"
+            },
+            {
+                "id": "sync_ql_key",
+                "name": "青龙变量名",
+                "val": "",
+                "type": "selects",
+                "items":[
+                    {"key":"dyjsbapp","label":"抖音极速版"},
+                    {"key":"zqkdapp","label":"中青看点"},
+                    {"key":"sjbapp","label":"睡觉宝"},
+                    {"key":"fdxsapp","label":"疯读小说"},
+                    {"key":"djxsapp","label":"得间小说"},
+                    {"key":"qqydapp","label":"QQ阅读"},
+                    {"key":"dzlapp","label":"多走路"},
+                    {"key":"jrttapp","label":"今日头条极速版"},
+                    {"key":"kkdapp","label":"快看点"},
+                    {"key":"sqxsapp","label":"书旗小说"},
+                    {"key":"wlkdapp","label":"文旅看点"},
+                    {"key":"txsapp","label":"淘小说"},
+                    {"key":"zssqapp","label":"追书神器"},
+                    {"key":"fqxsapp","label":"番茄小说"},
+                    {"key":"fqctapp","label":"番茄畅听"},
+                    {"key":"jzttapp","label":"九章头条"},
+                    {"key":"qttapp","label":"趣头条"},
+                    {"key":"dyhsbapp","label":"抖音火山版"},
+                    {"key":"ksapp","label":"快手短视频"},
+                    {"key":"ksjsbapp","label":"快手极速版"},
+                    {"key":"jyapp","label":"剪映"},
+                    {"key":"qdapp","label":"签到合集"},
+                    {"key":"xgspapp","label":"西瓜视频"},
+                    {"key":"jkttapp","label":"健康头条"}
+                ],
+                "desc": "选择需要同步的APP"
+            },
+            {
+                "id": "sync_ql_remark",
+                "name": "青龙变量备注",
+                "val": "",
+                "type": "text",
+                "desc": "填写需要同步的变量备注信息"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ql-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/ql.png"
+            ],
+            "script":"http://script.frp.aiuyo.com:8680/sync_ql.js"
+        },
+        {
+            "id":"jzttapp",
+            "name":"九章头条",
+            "keys":[
+                "jzttapp"
+            ],
+            "settings": [{
+                "id": "jzttuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "jzttactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/jztt-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/jztt.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"jkttapp",
+            "name":"健康头条",
+            "keys":[
+                "jkttapp"
+            ],
+            "settings": [{
+                "id": "jkttuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "jkttactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/jktt-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/jktt.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"ksjsbapp",
+            "name":"快手极速版",
+            "keys":[
+                "ksjsbapp"
+            ],
+            "settings": [{
+                "id": "ksjsbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "ksjsbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ks-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/ks.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"qttapp",
+            "name":"趣头条",
+            "keys":[
+                "qttapp"
+            ],
+            "settings": [{
+                "id": "qttuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "qttactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/qtt-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/qtt.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"dyhsbapp",
+            "name":"抖音火山版",
+            "keys":[
+                "dyhsbapp"
+            ],
+            "settings": [{
+                "id": "dyhsbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "dyhsbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/dyhsb-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/dyhsb.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"qdapp",
+            "name":"签到集合",
+            "keys":[
+                "qdapp"
+            ],
+            "settings": [{
+                "id": "qduserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "qdactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/qd-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/qd.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"jyapp",
+            "name":"剪映",
+            "keys":[
+                "jyapp"
+            ],
+            "settings": [{
+                "id": "jyuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "jyactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/jy-mini.png",
+                "http://script.frp.aiuyo.com:8680/img/jy.png"
+            ],
+            "script":"https://github.com/"
+        },
+        {
+            "id":"ksapp",
+            "name":"快手短视频",
+            "keys":[
+                "ksapp"
+            ],
+            "settings": [{
+                "id": "ksuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "ksactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ks.png",
+                "http://script.frp.aiuyo.com:8680/img/ks-mini.png"
+            ],
+            "script":"https://github.com/"
+        }
+    ]
+}
