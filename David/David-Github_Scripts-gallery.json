@@ -1,6 +1,6 @@
 {
     "name": "David_Scripts!",
-    "description": "默认关闭运行;update:2022/04/10;sE7En_Xp整理",
+    "description": "默认关闭运行;update:2022/04/14;sE7En_Xp整理",
     "task": [
       {
         "config": "0 0 1 1 * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/sync_ql.js, tag=David-同步青龙, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/sync_ql.png, enabled=false"
