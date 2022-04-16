@@ -886,7 +886,7 @@
                 "http://script.frp.aiuyo.com:8680/img/sync-mini.png",
                 "http://script.frp.aiuyo.com:8680/img/sync.png"
             ],
-            "script":"https://raw.githubusercontent.com/bluesmallpig/scripts/main/sync_key.js"
+            "script":"http://script.frp.aiuyo.com:8680/scripts/sync_key.js"
         },
         {
             "id":"zssqapp",
@@ -1183,7 +1183,7 @@
                 "http://script.frp.aiuyo.com:8680/img/ql-mini.png",
                 "http://script.frp.aiuyo.com:8680/img/ql.png"
             ],
-            "script":"http://script.frp.aiuyo.com:8680/sync_ql.js"
+            "script":"http://script.frp.aiuyo.com:8680/scripts/sync_ql.js"
         },
         {
             "id":"jzttapp",

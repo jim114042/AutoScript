@@ -21,6 +21,7 @@
      {"name":"jztt", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/jztt.png"},
      {"name":"kkd", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/kkd.png"},
      {"name":"ks", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/ks.png"},
+     {"name":"ks", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/ksjsb.png"},
      {"name":"ls", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/ls.png"},
      {"name":"mdmj", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/mdmj.png"},
      {"name":"qqyd", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/qqyd.png"},
@@ -34,8 +35,8 @@
      {"name":"xmyd", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/xmyd.png"},
      {"name":"zqkd", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/zqkd.png"},
      {"name":"zssq", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/zssq.png"},
-     {"name":"zssq", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/qdheji.png"},
-     {"name":"zssq", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/zhaoshang.png"},
-     {"name":"zssq", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/jianying.png"},
+     {"name":"qdhj", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/qdheji.png"},
+     {"name":"zs", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/zhaoshang.png"},
+     {"name":"jy", "url":"https:\/\/raw.githubusercontent.com\/Se7eNcBoT\/QuantumultX\/master\/David\/Icon\/jianying.png"},
     ]
 }

@@ -5,7 +5,7 @@
 
 TG电报群: https://t.me/china20211029
 
-boxjs: https://raw.githubusercontent.com/Se7eNcBoT/QuantumultX/master/David/scripts/David.boxjs.json
+boxjs: https://cdn.jsdelivr.net/gh/bluesmallpig/scripts/David.boxjs.json
 
 注意事项:
 进入我的-运行产品获取CK
@@ -13,7 +13,7 @@ boxjs: https://raw.githubusercontent.com/Se7eNcBoT/QuantumultX/master/David/scri
 软件证书原因，只能关闭QX，手动执行。
 
 [rewrite_local]
-https://api.lyyyzmy.com//product.+ url script-request-header https://raw.githubusercontent.com/Se7eNcBoT/QuantumultX/master/David/scripts/jt.js
+https://api.lyyyzmy.com//product.+ url script-request-header https://raw.githubusercontent.com/bluesmallpig/scripts/main/jt.js
 
 [MITM]
 hostname = api.lyyyzmy.com
