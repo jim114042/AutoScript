@@ -1,6 +1,6 @@
 {
   "name": "David_Scripts(CN2)!",
-  "description": "默认关闭运行;update:2022/04/14;sE7En_Xp整理",
+  "description": "默认关闭运行;update:2022/04/20;sE7En_Xp整理",
   "task": [
     {
       "config": "0 0 1 1 * http://script.frp.zhoudedi.top:60080/scripts/sync_ql.js, tag=David-同步青龙, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/sync_ql.png, enabled=false"
@@ -132,6 +132,8 @@
     },{
       "config": "33 7-18/1 * * * http://script.frp.zhoudedi.top:60080/scripts/ksjs.js, tag=David-快手极速版, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/ksjsb.png, enabled=false",
       "addons": " https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/zhoudedi_conf/ksjsb.conf"
+    },{
+      "config": "2 0-23/3 * * * http://script.frp.zhoudedi.top:60080/scripts/ggb.js, tag=David-广告吧, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/ggb.png, enabled=false"
     }
   ]
 }
