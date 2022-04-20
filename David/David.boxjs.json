@@ -1472,6 +1472,42 @@
                 "http://script.frp.aiuyo.com:8680/img/ks-mini.png"
             ],
             "script":"https://github.com/"
+        },
+        {
+            "id":"ggbapp",
+            "name":"广告吧",
+            "keys":[
+                "ggbapp"
+            ],
+            "settings": [{
+                "id": "ggbuserck",
+                "name": "当前账号序号",
+                "val": "1",
+                "type": "number",
+                "desc": "你要抓取第几个账号，就填几。"
+            },
+	        {
+                "id": "tguserid",
+                "name": "用户编号",
+                "val": "",
+                "type": "number",
+                "desc": "从机器人获得"
+            },
+            {
+                "id": "ggbactivecode",
+                "name": "授权码",
+                "val": "",
+                "type": "text",
+                "desc": "从机器人获得"
+            }
+            ],
+            "author":"@David",
+            "repo":"https://github.com/bluesmallpig/scripts",
+            "icons":[
+                "http://script.frp.aiuyo.com:8680/img/ggb.png",
+                "http://script.frp.aiuyo.com:8680/img/ggb-mini.png"
+            ],
+            "script":"https://github.com/"
         }
     ]
 }
