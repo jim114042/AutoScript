@@ -1,6 +1,6 @@
 {
     "name": "David_Scripts!",
-    "description": "默认关闭运行;update:2022/04/14;sE7En_Xp整理",
+    "description": "默认关闭运行;随缘维护",
     "task": [
       {
         "config": "0 0 1 1 * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/sync_ql.js, tag=David-同步青龙, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/sync_ql.png, enabled=false"
@@ -133,7 +133,13 @@
         "config": "33 7-18/1 * * * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/ksjsb.js, tag=David-快手极速版, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/ksjsb.png, enabled=false",
         "addons": " https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/conf/ksjsb.conf"
       },{
-        "config": "2 0-23/3 * * * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/ggb.js, tag=David-广告吧, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/ggb.png, enabled=false"
+        "config": "2 0-23/3 * * * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/ggb.js, tag=David-广告吧(凉凉), img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/ggb.png, enabled=false"
+      },{
+        "config": "*/5 5-23 * * * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/slyd.js, tag=David-书路阅读, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/slyd.png, enabled=false",
+        "addons": " https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/aiuyo_conf/slyd.conf"
+      },{
+        "config": "*/5 5-23 * * * https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/scripts/xgsp.js, tag=David-西瓜视频, img-url=https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/Icon/xgsp.png, enabled=false",
+        "addons": " https://raw.githubusercontent.com/sE7En0908/QuantumultX/master/David/aiuyo_conf/xgsp.conf"
       }
     ]
   }
