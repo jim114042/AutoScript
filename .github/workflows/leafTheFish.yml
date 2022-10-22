@@ -1,12 +1,10 @@
 name: leafTheFish-DeathNote
 on:
   schedule:
-    - cron: '10 * * * *'
+    - cron: '35 * * * *'
   workflow_dispatch:
   watch:
     types: started
-  repository_dispatch:
-    types: sync-leafTheFish-DeathNote
 jobs:
   repo-sync:
     env:
