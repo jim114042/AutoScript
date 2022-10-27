@@ -9,6 +9,7 @@ jobs:
   repo-sync:
     env:
       PAT: ${{ secrets.PAT }} 
+    runs-on: ubuntu-latest
     steps:
       - name: Step1
         run: |
