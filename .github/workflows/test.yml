@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step1
-        run: |
+        run:
           echo "${{ github.repository }}"
           echo "${{ github.event_name }}"
           echo "${{ github.event.repository.owner.id }}"
