@@ -9,9 +9,15 @@ jobs:
   repo-sync:
     env:
       PAT: ${{ secrets.PAT }} 
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest    
     steps:
+      - name: Step1
+        run:
+          echo "${{ github.repository }}"
+          echo "${{ github.event_name }}"
+          echo "${{ github.event.repository.owner.id }}"
+          echo "${{ github.event.sender.id }}"
+          
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
