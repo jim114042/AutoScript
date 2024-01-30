@@ -1,4 +1,4 @@
-name: 6dylan6-sync
+name: kxs2018-sync
 on:
   schedule:
     - cron: '25 */3 * * *'
@@ -6,7 +6,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-6dylan6-jdpro
+    types: sync-kxs2018-xiaoym
 jobs:
   repo-sync:
     env:
@@ -18,11 +18,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync 6dylan6-jdpro
+      - name: sync kxs2018-xiaoym
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/6dylan6/jdpro.git"
+          source_repo: "https://github.com/kxs2018/xiaoym.git"
           source_branch: "main"
-          destination_branch: "6dylan6"
+          destination_branch: "kxs2018"
           github_token: ${{ secrets.PAT }}
