@@ -1,4 +1,4 @@
-name: kxs2018-sync
+name: kxs2018-xiaoym-sync
 on:
   schedule:
     - cron: '25 */3 * * *'
