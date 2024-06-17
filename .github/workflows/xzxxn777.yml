@@ -1,4 +1,5 @@
-name: pojiezhiyuanjun-sync
+https://github.com/xzxxn777/Surge?tab=readme-ov-file
+name: xzxxn777-Surge
 on:
   schedule:
     - cron: '15 6,12,14,16,18 * * *'
@@ -6,7 +7,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-pojiezhiyuanjun-freev2
+    types: sync-xzxxn777-Surge
 jobs:
   repo-sync:
     env:
@@ -18,12 +19,12 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync pojiezhiyuanjun-freev2
+      - name: sync xzxxn777-Surge
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/pojiezhiyuanjun/freev2.git"
-          source_branch: "master"
-          destination_branch: "pojiezhiyuanjun"
+          source_repo: "https://github.com/xzxxn777/Surge.git"
+          source_branch: "main"
+          destination_branch: "xzxxn777"
           github_token: ${{ secrets.PAT }}
           
