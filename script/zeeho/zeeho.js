@@ -1,24 +1,22 @@
 /*
 new Env('极核-ZEEHO');
 @Author: Leiyiyan
-@Date: 2024-09-18 09:15
+@Date: 2026-09-05 13:15
 
 @Description:
 极核 每日签到、积分任务
 
 获取 Cookie 方式：zeeho app - 我的
-
 图标: https://raw.githubusercontent.com/leiyiyan/resource/main/icons/zeeho.png
-
 Boxjs订阅: https://raw.githubusercontent.com/leiyiyan/resource/main/subscribe/leiyiyan.boxjs.json
 
 
 [Script]
 # 获取 Cookie
-http-response ^https:\/\/tapi\.zeehoev\.com\/v1\.0\/mine\/cfmotoservermine\/setting script-path=https://raw.githubusercontent.com/leiyiyan/resource/main/script/zeeho/zeeho.js, requires-body=true, timeout=60, tag=极核Cookie
+http-response ^https:\/\/tapi\.zeehoev\.com\/v1\.0\/mine\/cfmotoservermine\/setting script-path=https://gist.github.com/Koxiu/9ea80264a1126019f6117f6de26a6c1d/raw/zeeho.js, requires-body=true, timeout=60, tag=极核Cookie
 
 # 脚本任务
-cron "0 7 * * *" script-path=https://raw.githubusercontent.com/leiyiyan/resource/main/script/zeeho/zeeho.js, tag=极核
+cron "0 7 * * *" script-path=https://gist.github.com/Koxiu/9ea80264a1126019f6117f6de26a6c1d/raw/zeeho.js, tag=极核
 
 [MITM]
 hostname = tapi.zeehoev.com
@@ -36,80 +34,142 @@ hostname = tapi.zeehoev.com
  */
 
 // env.js 全局
+
 const $ = new Env("极核-ZEEHO");
 const ckName = "zeeho_data";
 //-------------------- 一般不动变量区域 -------------------------------------
-const Notify = 1;//0为关闭通知,1为打开通知,默认为1
-const notify = $.isNode() ? require('./sendNotify') : '';
+const Notify = 1; //0为关闭通知,1为打开通知,默认为1
+const notify = $.isNode() ? require("./sendNotify") : "";
 let envSplitor = ["@"]; //多账号分隔符
-var userCookie = ($.isNode() ? process.env[ckName] : $.getdata(ckName)) || '';
+var userCookie = ($.isNode() ? process.env[ckName] : $.getdata(ckName)) || "";
 let userList = [];
 let userIdx = 0;
 let userCount = 0;
 
 // 调试
-$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';
-// 为多用户准备的通知数组
-$.notifyList = [];
-// 为通知准备的空数组
+$.is_debug =
+  ($.isNode() ? process.env.IS_DEDUG : $.getdata("is_debug")) || "false";
+// 为通知准备的空数组（改为全局汇总）
 $.notifyMsg = [];
+// 统计成功/失败账号数
+$.successCount = 0;
+$.failCount = 0;
 
 //---------------------- 自定义变量区域 -----------------------------------
 //脚本入口函数main()
 async function main() {
   try {
-    $.log('\n================== 任务 ==================\n');
+    $.log("\n================== 任务 ==================\n");
     for (let user of userList) {
-      console.log(`🔷账号${user.index} >> Start work`)
+      console.log(`🔷账号${user.index} >> Start work`);
       console.log(`随机延迟${user.getRandomTime()}ms`);
       // 签到
-      const integral = await user.signin();
-      let integralScore = 0
+      const integral = (await user.signin()) || 0;
+      let integralScore = 0;
       if (user.ckStatus) {
         await $.wait(user.getRandomTime());
         // 查看签到记录
-        const {count, prize} = await user.getSignRecord()
+        const { count = 0, prize = 0 } = (await user.getSignRecord()) || {};
         await $.wait(user.getRandomTime());
-        if(prize == 3) {
+
+        if (count === 30) {
           // 盲盒抽奖
-          integralScore = await user.lottery()
+          integralScore = await user.lottery();
           await $.wait(user.getRandomTime());
         }
-        // 创建动态
-        await user.createArticle()
+
+        // 查询今日任务完成情况
+        const taskList = await user.getTaskList();
+        const shareTask = taskList.find((t) => t.code === "1024"); // 分享内容
+        const likeTask = taskList.find((t) => t.code === "1026"); // 点赞内容
+        const postTask = taskList.find((t) => t.code === "1023"); // 每日首次发帖
+
+        // 判断今日是否已完成
+        const shareDone = isToday(shareTask?.createDate);
+        const likeDone = isToday(likeTask?.createDate);
+        const postDone = isToday(postTask?.createDate);
+
+        // 计算今日互动积分（真实值）
+        const interactGain =
+          (shareDone ? 0 : 1) + (likeDone ? 0 : 1) + (postDone ? 0 : 1);
+
+        // 发帖（每日首次发帖）
+        let postId = null;
+        if (!postDone) {
+          postId = await user.createArticle();
+          await $.wait(user.getRandomTime());
+        } else {
+          $.log(`ℹ️ 今日已发帖，跳过发帖任务`);
+        }
+
+        // 获取动态 ID（发帖或已有动态）
+        postId = postId || (await user.getArticles());
+        if (!postId) {
+          $.log(`⛔️ 获取动态失败: 未获取到动态ID，跳过互动任务`);
+          $.failCount++;
+          continue;
+        }
         await $.wait(user.getRandomTime());
-        // 获取动态列表
-        const postId = await user.getArticles()
-        await $.wait(user.getRandomTime());
+
         // 点赞
-        await user.thumbsUp(postId)
-        await $.wait(user.getRandomTime());
-        // 分享动态
-        await user.share(postId)
-        await $.wait(user.getRandomTime());
-        
-        // 删除动态
-        await user.deletePost(postId)
-        await $.wait(user.getRandomTime());
-        //查询待领取积分
+        if (!likeDone) {
+          await user.thumbsUp(postId);
+          await $.wait(user.getRandomTime());
+        } else {
+          $.log(`ℹ️ 今日已点赞，跳过点赞任务`);
+        }
+
+        // 评论（评论不加分，但分享前必须有评论）
+        if (!shareDone) {
+          await user.comment(postId);
+          await $.wait(user.getRandomTime());
+        } else {
+          $.log(`ℹ️ 今日已分享，评论可跳过`);
+        }
+
+        // 分享
+        if (!shareDone) {
+          await user.share(postId);
+          await $.wait(user.getRandomTime());
+        } else {
+          $.log(`ℹ️ 今日已分享，跳过分享任务`);
+        }
+
+        // 删除动态（可选：如果今日已发帖，可跳过删除）
+        if (!postDone) {
+          await user.deletePost(postId);
+          await $.wait(user.getRandomTime());
+        } else {
+          $.log(`ℹ️ 今日发帖任务已完成，不删除动态`);
+        }
+
+        // 查询当前积分
         const score = await user.getSignInfo();
-        $.title = `本次运行共获得${(integral + integralScore + 3)}积分`;
-        DoubleLog(`「${user.userName}」当前积分:${score}分,累计签到:${count}天`);
+        const gain = (integral || 0) + (integralScore || 0) + interactGain;
+        const oldScore = typeof score === "number" ? score - gain : "未知";
+        //$.title = `本次运行共获得${gain}积分`;
+        DoubleLog(
+          `「${user.userName}」当前积分:${score}分,累计签到:${count}天`,
+        );
+
+        // 汇总到总通知
+        $.notifyMsg.push(
+          `「${user.userName}」积分: ${oldScore}+${gain}, 累签: ${count}天`,
+        );
+        $.successCount++;
       } else {
-        //将ck过期消息存入消息数组
-        $.notifyMsg.push(`❌账号${user.userName || user.index} >> Check ck error!`)
+        // ck 失效
+        $.notifyMsg.push(
+          `❌账号「${user.userName || user.index}」执行失败: ck失效或请求异常`,
+        );
+        $.failCount++;
       }
-      //账号通知
-      $.notifyList.push({ "id": user.index, "avatar": user.avatar, "message": $.notifyMsg });
-      //清空数组
-      $.notifyMsg = [];
     }
   } catch (e) {
     $.log(`⛔️ main run error => ${e}`);
     throw new Error(`⛔️ main run error => ${e}`);
   }
 }
-
 
 class UserInfo {
   constructor(user) {
@@ -125,111 +185,141 @@ class UserInfo {
     this.host = "";
     this.headers = {
       "Content-Type": "application/json;charset=UTF-8",
-      "Authorization": this.token,
+      Authorization: this.token,
       "User-Agent": this.userAgent,
-    }
+    };
     this.getRandomTime = () => randomInt(1e3, 3e3);
     this.fetch = async (o) => {
       try {
-        if (typeof o === 'string') o = { url: o };
-        if (o?.url?.startsWith("/")) o.url = this.host + o.url
-        const res = await Request({ ...o, headers: o.headers || this.headers, url: o.url || this.baseUrl })
-        debug(res, o?.url?.replace(/\/+$/, '').substring(o?.url?.lastIndexOf('/') + 1));
-        if (res?.code == 40001) throw new Error(res?.message || `用户需要去登录`);
+        if (typeof o === "string") o = { url: o };
+        if (o?.url?.startsWith("/")) o.url = this.host + o.url;
+        const res = await Request({
+          ...o,
+          headers: o.headers || this.headers,
+          url: o.url || this.baseUrl,
+        });
+        debug(
+          res,
+          o?.url?.replace(/\/+$/, "").substring(o?.url?.lastIndexOf("/") + 1),
+        );
+        if (res?.code == 40001)
+          throw new Error(res?.message || `用户需要去登录`);
         return res;
       } catch (e) {
         this.ckStatus = false;
         $.log(`⛔️ 请求发起失败！${e}`);
       }
-    }
+    };
   }
   //签到
   async signin() {
     try {
       const params = {
-        server_name: 'SMART'
-      }
+        server_name: "SMART",
+      };
       const opts = {
-        url: "https://h5.zeehoev.com/cfmotoservermine/signin",
+        url: "https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/signin",
         type: "post",
-        headers: Object.assign(this.headers, getSign('h5', params)),
+        headers: Object.assign({}, this.headers, getSign("app", params)),
         params,
-        dataType: "json"
-      }
+        dataType: "json",
+      };
       let res = await this.fetch(opts);
-      if (res?.code == '10000' && res?.message == '操作成功') {
-        if(res?.data?.signInStatus == 0 && res?.data?.integralScore) {
+      if (res?.code == "10000" && res?.message == "操作成功") {
+        if (res?.data?.signInStatus == 0 && res?.data?.integralScore) {
           $.log(`✅ 签到任务: 已完成`);
-          const point = res?.data?.integralScore
-          return point
+          const point = res?.data?.integralScore;
+          return point;
         } else {
           $.log(`✅ 签到任务: 今日已签到`);
-          return null
+          return 0;
         }
       } else {
         $.log(`⛔️ 签到任务: ${res?.message}`);
-        return null
+        return 0;
       }
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 签到失败! ${e}`);
+      return 0;
     }
   }
+
   // 查询签到记录
   async getSignRecord() {
     try {
       const params = {
-        month: new Date().getFullYear() + '-' + (new Date().getMonth() + 1),
-        server_name: 'SMART'
-      }
+        month: new Date().getFullYear() + "-" + (new Date().getMonth() + 1),
+        server_name: "SMART",
+      };
+
       const opts = {
-        url: "https://h5.zeehoev.com/cfmotoservermine/signin/info",
+        url: "https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/signin/info",
         type: "get",
-        headers: Object.assign(this.headers, getSign('h5', params)),
+        headers: Object.assign({}, this.headers, getSign("app", params)),
         params,
-        dataType: "json"
-      }
+        dataType: "json",
+      };
+
       let res = await this.fetch(opts);
-      if (res?.code == '10000' && res?.message == '操作成功') {
-        const count = res?.data?.signCount
-        const prize = res?.data?.prizes
-        $.log(prize == 3 ? `✅ 满足盲盒抽奖条件` : `✅ 未满足盲盒抽奖条件`)
-        return {count, prize}
+
+      if (res?.code == "10000" && res?.message == "操作成功") {
+        const count = res?.data?.signCount || 0;
+
+        const prize = res?.data?.integral || 0;
+
+        $.log(`✅ 连续签到${count}天 | 今日积分${prize}`);
+
+        return { count, prize };
       }
-      return null
+
+      return null;
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 查询签到记录失败! ${e}`);
+      return null;
     }
   }
+
   // 开启盲盒
   async lottery() {
     try {
+      const date = new Date();
+      const today =
+        date.getFullYear() +
+        "-" +
+        String(date.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(date.getDate()).padStart(2, "0");
+
       const params = {
-        boxType: 0,
-        server_name: 'SMART'
-      }
+        supplementDate: today,
+      };
       const opts = {
-        url: "https://h5.zeehoev.com/cfmotoservermine/signin/lottery",
+        url: "https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/signin/supplementPrize",
         type: "get",
-        headers: Object.assign(this.headers, getSign('h5', params)),
+        headers: Object.assign({}, this.headers, getSign("app", params)),
         params,
-        dataType: "json"
-      }
+        dataType: "json",
+      };
       let res = await this.fetch(opts);
-      if (res?.code == '10000') {
-        const integralScore = res?.data?.integralScore
-        const prizesName = res?.data?.prizesName
+      if (res?.code == "10000") {
+        const integralScore =
+          res?.data?.integral || res?.data?.integralScore || 0;
+        const prizesName = res?.data?.prizesName || integralScore + "积分";
         $.log(`✅ 盲盒抽奖获得: ${prizesName}`);
-        return integralScore
-      }else{
-        $.log(`⛔️ 盲盒抽奖失败! ${res?.message}`);
+        return Number(integralScore);
+      } else {
+        $.log(`⚠️ 盲盒抽奖(今日可能无盲盒): ${res?.message}`);
+        return 0;
       }
     } catch (e) {
       this.ckStatus = false;
-      $.log(`⛔️ 盲盒抽奖失败! ${e}`);
+      $.log(`⛔️ 盲盒抽奖发起失败! ${e}`);
+      return 0;
     }
   }
+
   // 创建动态
   async createArticle() {
     try {
@@ -237,263 +327,488 @@ class UserInfo {
         url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/commonArticle`,
         type: "post",
         dataType: "json",
-        headers: Object.assign(this.headers, getSign('app')),
+        headers: Object.assign({}, this.headers, getSign("app")),
         body: {
-          postcontent: "开心的一天"
-        }
-      }
+          postcontent: "开心的一天",
+        },
+      };
       let res = await this.fetch(opts);
-      if (res?.code == '10000' && res?.message == '操作成功') {
-        $.log(`✅ 创建动态: 成功`);
+      if (res?.code == "10000") {
+        const postId = getPostId(res?.data);
+        $.log(`✅ 创建动态: 成功${postId ? ` ${postId}` : ""}`);
+        return postId;
+      } else {
+        $.log(`⛔️ 创建动态失败: ${res?.message}`);
       }
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 创建动态失败! ${e}`);
     }
   }
+
   // 获取动态列表
   async getArticles() {
     try {
       const opts = {
         url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/community/mineArticleInfo`,
         type: "get",
-        headers: Object.assign(this.headers, getSign('app')),
+        headers: Object.assign({}, this.headers, getSign("app")),
         dataType: "json",
         params: {
-          userId: this.userId
-        }
-      }
+          userId: this.userId,
+          page: 1,
+          pageSize: 10,
+        },
+      };
       let res = await this.fetch(opts);
-      if (res?.code == '10000' && res?.message == '操作成功') {
-        const list = res?.data
-        const postId = list[0]?.tuuid
+      if (res?.code == "10000") {
+        const list = Array.isArray(res?.data)
+          ? res.data
+          : res?.data?.records || res?.data?.list || res?.data?.rows || [];
+        let postId = getPostId(list?.[0] || res?.data);
+        if (!postId) postId = await this.getCommunityArticle();
         $.log(`✅ 获取动态: ${postId}`);
-        return postId
+        return postId;
+      } else {
+        $.log(`⛔️ 获取动态失败: ${res?.message}`);
       }
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 获取动态列表失败! ${e}`);
     }
   }
+
+  async getCommunityArticle() {
+    try {
+      const opts = {
+        url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/community/qbTzInfoNewV2`,
+        type: "get",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+        params: {
+          page: 1,
+          pageSize: 20,
+          postModule: 2,
+          slidingType: 1,
+        },
+      };
+      const res = await this.fetch(opts);
+      if (res?.code == "10000") {
+        const list = Array.isArray(res?.data) ? res.data : [];
+        const mine = list.find(
+          (item) =>
+            String(item.userId || item.createBy || item.uid || "") ===
+            String(this.userId),
+        );
+        return getPostId(mine || list[0]);
+      }
+      return null;
+    } catch (e) {
+      $.log(`⛔️ 获取社区动态失败: ${e}`);
+      return null;
+    }
+  }
+
   // 点赞动态
   async thumbsUp(postId) {
     try {
       const opts = {
         url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/socialCommu/likeFavoriteInfo`,
         type: "post",
-        headers: Object.assign(this.headers, getSign('app')),
+        headers: Object.assign({}, this.headers, getSign("app")),
         dataType: "json",
         body: {
-          postId,
-          kindFlag:"0"
-        }
-      }
+          postId: String(postId),
+          kindFlag: "0",
+        },
+      };
       const res = await this.fetch(opts);
-      $.log(`✅ 点赞动态: ${postId}`)
+      if (res?.code == "10000") {
+        $.log(`✅ 点赞动态: ${postId}`);
+      } else {
+        $.log(`⛔️ 点赞动态失败: ${res?.message}`);
+      }
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 点赞动态失败! ${e}`);
     }
   }
+
   // 分享动态
   async share(postId) {
     try {
       const opts = {
         url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/article/share/${postId}`,
-        method: "put",
-        headers: Object.assign(this.headers, getSign('app'))
+        type: "put",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+      };
+      let res = await this.fetch(opts);
+      if (res?.code == "10000") {
+        $.log(`✅ 分享动态: ${postId}`);
+      } else {
+        $.log(`⛔️ 分享动态失败: ${res?.message}`);
       }
-      let res = await new Promise((resolve, reject) => {
-        $.http['post'](opts)
-          .then((response) => {
-            var resp = response.body;
-            try {
-              resp = $.toObj(resp) || resp;
-            } catch (e) { }
-            resolve(resp);
-          })
-          .catch((err) => reject(err));
-      });
-      $.log(`✅ 分享动态: ${postId}`)
+      await this.adjustByShare();
     } catch (e) {
       this.ckStatus = false;
-      $.log(`⛔️ 分享失败! ${e}`);
+      $.log(`⛔️ 分享动态失败: ${e}`);
     }
   }
+
+  // 分享积分触发
+  async adjustByShare() {
+    try {
+      const opts = {
+        url: `https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/integral/adjustByShare`,
+        type: "get",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+      };
+      const res = await this.fetch(opts);
+      if (res?.code == "10000") {
+        $.log(`✅ 分享积分: 已触发`);
+      } else {
+        $.log(`⛔️ 分享积分失败: ${res?.message}`);
+      }
+    } catch (e) {
+      this.ckStatus = false;
+      $.log(`⛔️ 分享积分失败: ${e}`);
+    }
+  }
+
+  // 评论动态
+  async comment(postId) {
+    try {
+      const opts = {
+        url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/commentInfo`,
+        type: "post",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+        body: {
+          postid: String(postId),
+          userId: String(this.userId),
+          comments: "厉害",
+          sendTos: "[\n\n]",
+        },
+      };
+      const res = await this.fetch(opts);
+      if (res?.code == "10000") {
+        $.log(`✅ 评论动态: ${postId}`);
+      } else {
+        $.log(`⛔️ 评论动态失败: ${res?.message}`);
+      }
+    } catch (e) {
+      this.ckStatus = false;
+      $.log(`⛔️ 评论动态失败: ${e}`);
+    }
+  }
+
   // 删除动态
   async deletePost(postId) {
     try {
       const opts = {
         url: `https://tapi.zeehoev.com/v1.0/social/cfmotoserversocial/commonArticle/deleteArticle?articleId=${postId}&postType=1`,
-        method: "delete",
-        headers: Object.assign(this.headers, getSign('app'))
+        type: "delete",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+      };
+      const res = await this.fetch(opts);
+      if (res?.code == "10000") {
+        $.log(`✅ 删除动态: ${postId}`);
+      } else {
+        $.log(`⛔️ 删除动态失败: ${res?.message}`);
       }
-      let res = await new Promise((resolve, reject) => {
-        $.http['post'](opts)
-          .then((response) => {
-            var resp = response.body;
-            try {
-              resp = $.toObj(resp) || resp;
-            } catch (e) { }
-            resolve(resp);
-          })
-          .catch((err) => reject(err));
-      });
-      $.log(`✅ 删除动态: ${postId}`)
     } catch (e) {
       this.ckStatus = false;
-      $.log(`⛔️ 删除动态失败! ${e}`);
+      $.log(`⛔️ 删除动态失败: ${e}`);
     }
   }
-  
+
+  // 查询今日任务完成情况（分享 / 点赞 / 发帖）
+  async getTaskList() {
+    try {
+      const opts = {
+        url: `https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/integral/getByUserId`,
+        type: "get",
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+        params: {
+          userId: this.userId,
+        },
+      };
+
+      const res = await this.fetch(opts);
+      if (res?.code === "10000") {
+        return res?.data?.ps0003_01_002_VOList || [];
+      }
+      return [];
+    } catch (e) {
+      $.log(`⛔️ 查询任务列表失败: ${e}`);
+      return [];
+    }
+  }
+
   // 查询用户信息
   async getSignInfo() {
     try {
       const opts = {
         url: `https://tapi.zeehoev.com/v1.0/mine/cfmotoservermine/setting/${this.userId}`,
         type: "get",
-        headers: Object.assign(this.headers, getSign('app')),
-        dataType: "json"
-      }
+        headers: Object.assign({}, this.headers, getSign("app")),
+        dataType: "json",
+      };
       let res = await this.fetch(opts);
-      if (res?.code == '10000' && res?.message == '操作成功') {
-        const score = res?.data?.score
-        return score
+      if (res?.code == "10000" && res?.message == "操作成功") {
+        const score = res?.data?.score;
+        return score;
       }
-      return null
+      return null;
     } catch (e) {
       this.ckStatus = false;
       $.log(`⛔️ 查询用户信息失败! ${e}`);
+      return null;
     }
   }
 }
+
+function getPostId(data) {
+  if (!data) return null;
+  if (typeof data === "string" || typeof data === "number") return String(data);
+  if (Array.isArray(data)) return getPostId(data[0]);
+  const direct =
+    data.uuid ||
+    data.tuuid ||
+    data.postId ||
+    data.postid ||
+    data.articleId ||
+    data.articleID ||
+    data.id ||
+    data.dataId ||
+    data.tid;
+  if (direct) return String(direct);
+  for (const key of ["records", "list", "rows", "data", "result"]) {
+    const value = data[key];
+    const postId = getPostId(value);
+    if (postId) return postId;
+  }
+  return null;
+}
+
 async function getCookie() {
-  if ($request && $request.method === 'OPTIONS') return;
+  if ($request && $request.method === "OPTIONS") return;
 
   const header = ObjectKeys2LowerCase($request.headers);
-  const token = header['authorization'];
-  const userAgent = header['user-agent'];
+  const token = header["authorization"];
+  const userAgent = header["user-agent"];
   const body = $.toObj($response.body);
-  if (!(body?.data)) {
-    $.msg($.name, `❌获取Cookie失败!`, "")
+  if (!body?.data) {
+    $.msg($.name, `❌获取Cookie失败!`, "");
     return;
   }
 
   const { id, nickName } = body?.data;
   const newData = {
-    "userId": id,
-    "token": token,
-    "userName": nickName,
-    "userAgent": userAgent
-  }
+    userId: id,
+    token: token,
+    userName: nickName,
+    userAgent: userAgent,
+  };
 
   userCookie = userCookie ? JSON.parse(userCookie) : [];
-  const index = userCookie.findIndex(e => e.userId == newData.userId);
+  const index = userCookie.findIndex((e) => e.userId == newData.userId);
 
-  userCookie[index] ? userCookie[index] = newData : userCookie.push(newData);
+  userCookie[index] ? (userCookie[index] = newData) : userCookie.push(newData);
 
   $.setjson(userCookie, ckName);
   $.msg($.name, `🎉${newData.userName}更新token成功!`, ``);
 }
-function getSign(type, params = {}) {
-  const appConfig = {
-    appId: type === "h5" ? "azRnLvxl" : "S7qPWPU1",
-    appSecret: type === "h5" ? "76d9baa27803da36d07ec4972fd041b32fcec40d" : "c5e0da7f4da28df805694ec3dd1fc6792e9df99d"
-  }
-  const query = Object.keys(params).map(key => `${key}=${params[key]}`).join('&')
-  const timestamp = new Date().getTime()
-  const nonce = type === "h5" ? getUuid() : timestamp + getRandomChars()
-  const signature = type === "h5" ? `${query}appId=${appConfig.appId}&nonce=${nonce}&timestamp=${timestamp}${appConfig.appSecret}` : `appId=${appConfig.appId}&nonce=${nonce}&timestamp=${timestamp}${appConfig.appSecret}`
-  return {
-    'cfmoto-x-param': `appId=${appConfig.appId}&nonce=${nonce}&timestamp=${timestamp}`,
-    'cfmoto-x-sign': md5(sha1(signature), 32).toString(),
-    'cfmoto-x-sign-type': '0'
-  }
+
+function isToday(dateStr) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  const today = new Date();
+  return d.toDateString() === today.toDateString();
 }
+
+function getSign(type, params = {}, body = "") {
+  const appConfig = {
+    appId: type === "h5" ? "oWo6ZdTg" : "S7qPWPU1",
+    appSecret:
+      type === "h5"
+        ? "a03b705c3ad450e07a408769e56eff94c612726f"
+        : "c5e0da7f4da28df805694ec3dd1fc6792e9df99d",
+  };
+  const query = Object.keys(params)
+    .map((key) => `${key}=${params[key]}`)
+    .join("&");
+  const timestamp = new Date().getTime();
+  const nonce = type === "h5" ? getUuid() : timestamp + getRandomChars();
+  const param = `appId=${appConfig.appId}&nonce=${nonce}&timestamp=${timestamp}`;
+  const bodyStr = body
+    ? typeof body === "string"
+      ? body
+      : JSON.stringify(body)
+    : "";
+  const signature =
+    type === "h5"
+      ? `${query}${param}${appConfig.appSecret}`
+      : `${bodyStr}${param}${appConfig.appSecret}`;
+  const sign = md5(sha1(signature), 32).toString();
+  return {
+    "cfmoto-x-param": param,
+    "cfmoto-x-sign": sign,
+    "cfmoto-x-sign-type": "0",
+    timestamp: String(timestamp),
+    nonce: nonce,
+    signature: sign,
+  };
+}
+
 //-------------------------- 辅助函数区域 -----------------------------------
 //请求二次封装
 async function Request(o) {
-  if (typeof o === 'string') o = { url: o };
+  if (typeof o === "string") o = { url: o };
   try {
-    if (!o?.url) throw new Error('[发送请求] 缺少 url 参数');
+    if (!o?.url) throw new Error("[发送请求] 缺少 url 参数");
     // type => 因为env中使用method处理post的特殊请求(put/delete/patch), 所以这里使用type
-    let { url: u, type, headers = {}, body: b, params, dataType = 'form', resultType = 'data' } = o;
+    let {
+      url: u,
+      type,
+      headers = {},
+      body: b,
+      params,
+      dataType = "form",
+      resultType = "data",
+    } = o;
     // post请求需要处理params参数(get不需要, env已经处理)
-    const method = type ? type?.toLowerCase() : ('body' in o ? 'post' : 'get');
-    const url = u.concat(method === 'post' ? '?' + $.queryStr(params) : '');
+    const method = type ? type?.toLowerCase() : "body" in o ? "post" : "get";
+    const query = params ? $.queryStr(params) : "";
+    const urlQuery = u.includes("?") ? u.split("?").slice(1).join("?") : "";
+    const signQuery = [urlQuery, query].filter(Boolean).join("&");
+    const url = u.concat(query ? (u.includes("?") ? "&" : "?") + query : "");
 
-    const timeout = o.timeout ? ($.isSurge() ? o.timeout / 1e3 : o.timeout) : 1e4
-    // 根据jsonType处理headers
-    if (dataType === 'json') headers['Content-Type'] = 'application/json;charset=UTF-8';
-    // post请求处理body
-    const body = b && dataType == 'form' ? $.queryStr(b) : $.toStr(b);
-    const request = { ...o, ...(o?.opts ? o.opts : {}), url, headers, ...(method === 'post' && { body }), ...(method === 'get' && params && { params }), timeout: timeout }
-    const httpPromise = $.http[method.toLowerCase()](request)
-      .then(response => resultType == 'data' ? ($.toObj(response.body) || response.body) : ($.toObj(response) || response))
-      .catch(err => $.log(`❌请求发起失败！原因为：${err}`));
-    // 使用Promise.race来强行加入超时处理
+    const timeout = o.timeout
+      ? $.isSurge()
+        ? o.timeout / 1e3
+        : o.timeout
+      : 1e4;
+    if (dataType === "json")
+      headers["Content-Type"] = "application/json;charset=UTF-8";
+    const body = b && dataType == "form" ? $.queryStr(b) : $.toStr(b);
+    if (
+      headers["cfmoto-x-param"] &&
+      headers["cfmoto-x-param"].includes("appId=S7qPWPU1")
+    ) {
+      const signPayload = body || signQuery;
+      if (signPayload) {
+        const signature = `${signPayload}${headers["cfmoto-x-param"]}c5e0da7f4da28df805694ec3dd1fc6792e9df99d`;
+        const sign = md5(sha1(signature), 32).toString();
+        headers["cfmoto-x-sign"] = sign;
+        headers["signature"] = sign;
+      }
+    }
+    const httpMethod = ["get", "post"].includes(method) ? method : "post";
+    const request = {
+      ...o,
+      ...(o?.opts ? o.opts : {}),
+      url,
+      method,
+      headers,
+      params: undefined,
+      ...(method !== "get" && body && { body }),
+      timeout: timeout,
+    };
+    const httpPromise = $.http[httpMethod.toLowerCase()](request)
+      .then((response) =>
+        resultType == "data"
+          ? $.toObj(response.body) || response.body
+          : $.toObj(response) || response,
+      )
+      .catch((err) => $.log(`❌请求发起失败！原因为：${err}`));
     return Promise.race([
-      new Promise((_, e) => setTimeout(() => e('当前请求已超时'), timeout)),
-      httpPromise
+      new Promise((_, e) => setTimeout(() => e("当前请求已超时"), timeout)),
+      httpPromise,
     ]);
   } catch (e) {
     console.log(`❌请求发起失败！原因为：${e}`);
   }
-};
+}
+
 //生成随机数
 function randomInt(n, r) {
-  return Math.round(Math.random() * (r - n) + n)
-};
+  return Math.round(Math.random() * (r - n) + n);
+}
+
 //控制台打印
 function DoubleLog(data) {
-  if (data && $.isNode()) {
+  if (data) {
     console.log(`${data}`);
-    $.notifyMsg.push(`${data}`)
-  } else if (data) {
-    console.log(`${data}`);
-    $.notifyMsg.push(`${data}`)
   }
-};
+}
+
 //调试
-function debug(t, l = 'debug') {
-  if ($.is_debug === 'true') {
+function debug(t, l = "debug") {
+  if ($.is_debug === "true") {
     $.log(`\n-----------${l}------------\n`);
     $.log(typeof t == "string" ? t : $.toStr(t) || `debug error => t=${t}`);
-    $.log(`\n-----------${l}------------\n`)
+    $.log(`\n-----------${l}------------\n`);
   }
-};
-//对多账号通知进行兼容
-async function SendMsgList(l) {
-  await Promise.allSettled(l?.map(u => SendMsg(u.message.join('\n'), u.avatar)));
-};
-//账号通知
-async function SendMsg(n, o) {
-  n && (0 < Notify ? $.isNode() ? await notify.sendNotify($.name, n) : $.msg($.name, $.title || "", n, {
-    "media-url": o
-  }) : console.log(n))
-};
+}
+
+// 账号通知（保留单条发送能力）
+async function SendMsg(summary, detail) {
+  if (!summary && !detail) return;
+
+  if ($.isNode()) {
+    // Node 环境：整合成一条文本推送
+    const text = [summary, detail].filter(Boolean).join("\n");
+    await notify.sendNotify($.name, text);
+  } else {
+    // Surge / QuanX / Loon / Shadowrocket
+    $.msg($.name, summary || "", detail || "");
+  }
+}
+
 //将请求头转换为小写
-function ObjectKeys2LowerCase(obj) { return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v])) }
+function ObjectKeys2LowerCase(obj) {
+  return Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]),
+  );
+}
+
 //---------------------- 主程序执行入口 -----------------------------------
 !(async () => {
   if (typeof $request != "undefined") {
     await getCookie();
   } else {
-    const e = envSplitor.find(o => userCookie.includes(o)) || envSplitor[0];
+    const e = envSplitor.find((o) => userCookie.includes(o)) || envSplitor[0];
     userCookie = $.toObj(userCookie) || userCookie.split(e);
 
-    userList.push(...userCookie.map(n => new UserInfo(n)).filter(Boolean));
+    userList.push(...userCookie.map((n) => new UserInfo(n)).filter(Boolean));
 
     userCount = userList.length;
     console.log(`共找到${userCount}个账号`);
     if (userList.length > 0) await main();
   }
 })()
-  .catch(e => $.notifyMsg.push(e.message || e))
+  .catch((e) => $.notifyMsg.push(e.message || e))
   .finally(async () => {
-    await SendMsgList($.notifyList);
+    // 构建总通知
+
+    const total = userList.length;
+    const success = $.successCount || 0;
+    const fail = $.failCount || total - success;
+
+    const summary = `共${total}个账号, 成功${success}个, 失败${fail}个`;
+    const body = $.notifyMsg.length ? $.notifyMsg.join("\n") : "";
+
+    await SendMsg(summary, body);
+
     $.done({ ok: 1 });
   });
+
+
 /** ---------------------------------固定不动区域----------------------------------------- */
 // prettier-ignore
 function randomPattern(pattern,chars="abcdef0123456789"){let result="";for(let char of pattern){if(char==="x"){result+=chars.charAt(Math.floor(Math.random()*chars.length))}else if(char==="X"){result+=chars.charAt(Math.floor(Math.random()*chars.length)).toUpperCase()}else{result+=char}}return result}
